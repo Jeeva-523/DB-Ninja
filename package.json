@@ -1,0 +1,10 @@
+{
+  "name": "shopmaster-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ShopMaster Enterprise E-Commerce Monorepo Root",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev"
+  }
+}
