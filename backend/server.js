@@ -26,7 +26,7 @@ app.use(cors({
 // 3. Rate Limiting on Auth API Routes (Max 15 requests per 15 minutes)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 15,
+  max: 1000,
   message: {
     success: false,
     message: 'Too many authentication attempts from this IP. Please try again after 15 minutes.'
@@ -71,6 +71,15 @@ app.use('/api/v1/settings', settingRoutes);
 
 // 7. Global Error Handler Middleware
 app.use(errorHandler);
+
+// Root Route
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "🚀 ShopMaster Backend is Running Successfully",
+    version: "1.0.0"
+  });
+});
 
 // 8. Start Express Server & Test DB Connection
 app.listen(PORT, async () => {

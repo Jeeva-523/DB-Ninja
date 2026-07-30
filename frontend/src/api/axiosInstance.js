@@ -4,7 +4,7 @@ import axios from 'axios';
  * Enterprise Axios Configuration with Interceptors
  */
 const axiosInstance = axios.create({
-  baseURL: '/api/v1',
+  baseURL: 'http://localhost:5000/api/v1',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -36,7 +36,10 @@ axiosInstance.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem('refreshToken');
         if (refreshToken) {
-          const res = await axios.post('/api/v1/auth/refresh', { refreshToken });
+          const res = await axios.post(
+            'http://localhost:5000/api/v1/auth/refresh',
+            { refreshToken }
+          );
           if (res.data?.success) {
             const newAccessToken = res.data.data.accessToken;
             localStorage.setItem('accessToken', newAccessToken);
